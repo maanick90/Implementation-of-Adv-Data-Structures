@@ -1,0 +1,139 @@
+
+CS 6301.{013,016}: Implementation of advanced DS&A
+Project 8 
+
+This project is optional.  It has two parts.  
+Max marks for each part: 50 + 0.5 EC  (No EC will be given if the
+program produces wrong output on any of the test inputs).
+There will be a run-time limit for each test case.  Programs have to
+output the correct answer within that time limit to be eligible for EC.
+
+No help will be provided by the instructor to solve these problems.
+But, you can search over the internet and try to get ideas.  Do not
+download code from the internet to solve these problems.  Understand
+the ideas and write your own code to solve the problems.  Do not ask
+for help on any forums, or anyone else outside your group.
+
+Ver 1.0: Thu, Nov 6: Initial description.
+
+Code base: Any data structures (built-in or downloaded) for lists, priority
+queues, graphs, DFS, topological ordering (but not other graph algorithms),
+and sorting.  Do not download code for shortest paths, but you can modify
+your implementation of Prim's algorithm to get Dijkstra's algorithm.
+
+Deadlines: 2 AM on Monday: Nov 24 (1st), Dec 1 (2nd), Dec 8 (3rd).
+No documentation/report: -20 each.  Not as per i/o specification: 0 EC.
+Earn participation credits by posting large test cases (over 10,000 nodes),
+with correct output, created by you, on the elearning forum.
+
+
+Part a. Number of simple shorest paths from a source node s to each node.
+The input is a directed graph G=(V,E) as input, with edge weights
+W:E-->Z (negative weights are possible).  The output is the number of
+shortest paths (not necessarily disjoint) from s to each vertex u in
+the graph.  If the graph has a negative or zero cycle, reachable from s,
+then print a message "Non-positive cycle in graph.  DAC is not applicable".
+
+Input specification: 
+The input is taken from stdin (console/standard input), and contains a sequence 
+of lines.  The first line of input has 4 integers, |V|, |E|, s and t.  The
+next |E| lines of input have 3 integers in each line: u,v,w, indicating
+a directed edge (u,v) of weight w.  Nodes are numbered 1..|V|.   
+Limits: |V| is between 3 and 1,000,000.  |E| is at most 10,000,000.
+If there is anything in the input beyond this, disregard them.  It is
+not necessary to read the data till the end of input.
+
+Output specification: In the first line of the output, print the
+length of a shortest path from s to t, the number of shortest paths
+from s to t, and the running time in msec.  If |V| is less than or
+equal to 100, in the next lines, output the lengths of shortest paths
+from s to each vertex u in the graph, the predecessor node of u in
+that shortest path, and the number of shortest paths from s to u.  If
+there is no path from s to a vertex, print INF as the length, and - as
+the predecessor.
+
+
+Note that in the following example, there is a negative cycle, 6->7->6
+of length -2.  But, since there is no path from s to either of these
+nodes, and therefore, the algorithm can correctly output the answers.
+Also, there are 2 shortest paths from 1 to 5:  1->2->4->5, and 1->3->4->5.
+Both paths have length 8, but they are not disjoint.
+
+Sample input:
+7 8 1 5
+1 2 2
+1 3 3
+2 4 5
+3 4 4
+4 5 1
+5 1 -7
+6 7 -1
+7 6 -1
+
+
+Output:
+8 2 <msec>
+1 0 - 1
+2 2 1 1
+3 3 1 1
+4 7 2 2
+5 8 4 2
+6 INF - 0
+7 INF - 0
+
+
+
+Part b. Reward collection problem.
+The input is an undirected graph G=(V,E), with weights W:E-->Z+, a
+source node s in V.  In addition each node has a reward amount
+associated with it, R:V-->Z+.  This amount can be claimed by visiting
+that node (representing a node that is dirty and cleaning it with a
+vacuum cleaner).  Starting from s, find a traversal that starts and
+ends at s, in which the reward collected is a maximum.  
+
+Rules: You are not allowed to visit any node more than once.  The
+reward at a node can be collected only if the traversal got there
+using a shortest path from s to that node.
+
+Input specification: The input is taken from stdin (console),
+and contains a sequence of lines.  The first line of input has 3
+integers, |V|, |E|, and s. The next few lines have the rewards at the
+vertices, in order of the vertex numbers, 30 per line.  The next |E|
+lines of input have 3 integers in each line: u,v,w, indicating an edge
+(u,v) of weight w.  Nodes are numbered 1..|V|.  Limits: |V| is between
+3 and 1,000.  |E| is at most 100,000.  If there is anything in the
+input beyond this, disregard them.  It is not necessary to read the
+data till the end of input.
+
+Output specification: In the first line of the output, print the
+maximum reward that can be collected, and the running time in msec.
+In the next lines, print the nodes in the traversal, in the order
+visited, and the reward collected at that node.
+
+In the following input, node 7 has a reward of $1,000, but if we go
+there to collect it, there is no way to get back to s, because the
+traversal is not allowed to revisit the same node again.  In addition,
+no reward is collected when 5 and 4 are visited, because the traversal
+did not get there using a shortest path from s.
+
+Sample input:
+7 7 1
+0 10 10 5 5 10 1000
+1 2 2
+1 4 4
+2 3 5
+4 5 4
+3 6 2
+5 6 4
+6 7 4
+
+
+Output:
+30 <msec>
+1 0
+2 10
+3 10
+6 10
+5 0
+4 0
+1 0

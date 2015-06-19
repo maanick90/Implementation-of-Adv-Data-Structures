@@ -1,0 +1,51 @@
+CS 6301.{013,016}: Implementation of advanced DS&A
+Project 5 (Type 1: Arithmetic with large numbers).
+
+This project is optional.  It is eligible for excellence award.
+Only projects submitted by 1st deadline are eligible for exc award.
+
+Ver 0.1: Sat, Sep 20
+More details will be added by Mon, Sep 22. 
+Additional operations may be added until version becomes 1.0.
+Ver 1.0: No changes.
+Ver 1.1: 10/8: Added line numbers to sample input.
+Ver 1.2: 10/10: Removed last line from sample input (undefined var).
+
+Deadlines: 2 AM on Monday: Oct 13 (1st), Oct 20 (2nd), Oct 27 (3rd).
+
+Rules: Same rules as Project 4.
+
+Extend Project 4 to handle the following additional operations.
+You can change the implementation by allowing each node of the
+linked list to store up to 100 integers.  All operations defined
+in project 4 should be implemented.  In addition:
+
+1. Handle negative numbers.
+2. Division operation: / (integer division).
+3. Remainder: % (mod)
+4. Square root: ~ (integer part).  Ex: 27~ is 5.
+5. Max power in 15 secs: ).  Find the maximum power of a number that the
+   program can calculate in 15 secs, using repeated squaring.
+
+Sample input:
+1 a=4
+2 b=11
+3 c=a-b
+4 d=b/a
+5 e=b%a
+6 f=b~
+7 g=a)
+8 c
+9 d
+10 e
+11 f
+12 g
+
+Comments after # are not part of the output.  Its output:
+-7	# 4-11
+2	# 11/4 - integer division
+3	# 11%4 - remainder when 11 is divided by 4
+3	# sqrt(11)
+?	# g gets the maximum power of a=4, found in 15 secs, by squaring.
+        # i.e., 4, 4^2, 16^2, 256^2, etc. in 15 secs.
+
